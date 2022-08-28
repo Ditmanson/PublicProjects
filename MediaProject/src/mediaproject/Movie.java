@@ -24,7 +24,7 @@ public class Movie extends Media
     }
      @Override
     public String toString(){
-       // System.out.printf("Title: %s \t Artist: %s\n",title,artist);
-        return  "Title:  " + title +"\nGenere: "+genere;
+        return  "Genere:  " + genere +"\nTitle: "+title;
+       // return  "Title:  " + title +"\nGenere: "+genere;
     }
 }

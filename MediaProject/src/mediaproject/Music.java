@@ -10,24 +10,32 @@ package mediaproject;
  */
 public class Music extends Media
 {
+
     protected String artist;
-    
-    public Music(String title, String artist){
+
+    public Music(String title, String artist)
+    {
         super(title);
-        this.artist=artist;
+        this.artist = artist;
         //setTitle(title);
     }
-    
-     public String getArtist(){
+
+    public String getArtist()
+    {
         return artist;
     }
-    
-    public void setArtist(String newTitle){
-        artist=newTitle;
+
+    public void setArtist(String newTitle)
+    {
+        artist = newTitle;
     }
+
     @Override
-    public String toString(){
-       // System.out.printf("Title: %s \t Artist: %s\n",title,artist);
-        return  "Title:  " + title +"\nArtist: "+artist;
+    public String toString()
+    {
+        // System.out.printf("Title: %s \t Artist: %s\n",title,artist);
+       // return "Title:  " + title + "\nArtist: " + artist;
+        return "Artist:  " + artist + "\nTitle: " + title;
+
     }
 }
