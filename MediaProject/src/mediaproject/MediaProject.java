@@ -1,15 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+
+/**
+ * @author Travis Ditmanson
+ * @email travisditmanson@gmail.com
  */
-package mediaproject;
+//package mediaproject;
 
 import java.io.*;
 import java.util.*;
 
 /**
  *
- * @author travi
+ * @Description of MediaProject
+ * Class is used to demonstrate use of polymorphic arrays and method building
  */
 public class MediaProject
 {
