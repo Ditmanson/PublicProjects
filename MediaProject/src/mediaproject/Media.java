@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mediaproject;
 
 /**
  *
- * @author travi
+ * @author travis
+ * media only has title and title getter
  */
 public class Media
 {
@@ -14,11 +12,16 @@ public class Media
     public Media(String title){
         this.title=title;
     }
-    
+    /**
+     * @return title
+     */
     public String getTitle(){
         return title;
     }
-    
+    /**
+     * adjust title
+     * @param newTitle 
+     */
     public void setTitle(String newTitle){
         title=newTitle;
     }

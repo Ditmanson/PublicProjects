@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mediaproject;
 
 /**
@@ -11,17 +8,33 @@ package mediaproject;
 public class Movie extends Media
 {
     private String genere;
+    /**
+     * constructor for movie
+     * @param title exists for all media objects
+     * @param genere specific for movies, i know it could apply to music but that's not the point
+     */
     public Movie(String title, String genere){
          super(title);
          this.genere=genere;
     }
+    /**
+     * getter for genere
+     * @return 
+     */
      public String getGenere(){
         return genere;
     }
-    
+    /**
+     * setter for genere
+     * @param newGenere 
+     */
     public void setGenere(String newGenere){
         genere=newGenere;
     }
+    /**
+     * to string for genere
+     * @return 
+     */
      @Override
     public String toString(){
         return  "Genere: " + genere +"\nTitle: "+title;

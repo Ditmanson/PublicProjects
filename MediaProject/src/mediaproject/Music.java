@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package mediaproject;
 
 /**
@@ -12,24 +9,37 @@ public class Music extends Media
 {
 
     protected String artist;
-
+/**
+ * constructor
+ * @param title title is in common with all media
+ * @param artist artist is specific to music
+ */
     public Music(String title, String artist)
     {
         super(title);
         this.artist = artist;
         //setTitle(title);
     }
-
+/**
+ * used to access artist
+ * @return 
+ */
     public String getArtist()
     {
         return artist;
     }
-
-    public void setArtist(String newTitle)
+/**
+ * used to adjust the artist name if we wanted to add feature
+ * @param newArtist 
+ */
+    public void setArtist(String newArtist)
     {
-        artist = newTitle;
+        artist = newArtist;
     }
-
+/**
+ * override to string to make it easy to sort items later
+ * @return 
+ */
     @Override
     public String toString()
     {
