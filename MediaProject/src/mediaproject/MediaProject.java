@@ -29,16 +29,16 @@ public class MediaProject
         menu[1] = "1 - Add Song";
         menu[2] = "2 - Add a movie";
         menu[3] = "3 - Display All Media On Screen";
-        menu[4] = "4 - Display Music";
-        menu[5] = "5 - Display Movies";
-        menu[6] = "6 - Sort Music";
+        menu[4] = "4 - Display Music, option to export to txt file";
+        menu[5] = "5 - Display Movies, option to export to txt file";
+        menu[6] = "6 - import list";
         menu[7] = "7 - Quit";
 
         ArrayList<Media> allMedia = new ArrayList<Media>();
         String yesOrNo = "n";
         int menuChoice = promptForMenuSelection(input, menu);
-        int movieSize=0;
-        int musicSize=0;
+        int movieSize = 0;
+        int musicSize = 0;
         boolean shouldExit = false;
         while (shouldExit == false)
         {
@@ -66,27 +66,28 @@ public class MediaProject
                     printStringArray(sortedMusic);
                     yesOrNo = promptForString(input, "Type yes to export list to txt file");
                     yesOrNo = yesOrNo.toUpperCase();
-                    if(yesOrNo.equals("YES"))
+                    if (yesOrNo.equals("YES"))
                     {
-                    exportStringArray(sortedMusic,input);
+                        exportStringArray(sortedMusic, input);
                     }
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 5:
-                  //  int movieSize = countMovie(allMedia);
+                    //  int movieSize = countMovie(allMedia);
                     String[] sortedMovie = new String[movieSize];
                     sortedMovie = createMovieArray(allMedia, movieSize);
                     Arrays.sort(sortedMovie);
                     printStringArray(sortedMovie);
                     yesOrNo = promptForString(input, "Type yes to export list to txt file");
                     yesOrNo = yesOrNo.toUpperCase();
-                    if(yesOrNo.equals("YES"))
+                    if (yesOrNo.equals("YES"))
                     {
-                        exportStringArray(sortedMovie,input);
+                        exportStringArray(sortedMovie, input);
                     }
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 6:
+                    importList(input,allMedia);
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 7:
@@ -102,9 +103,48 @@ public class MediaProject
 
     }
 
+    public static void importList(Scanner input, ArrayList<Media> media)
+    {
+        String fileName = promptForString(input, "Please enter file name");
+        File inputFileName = new File(fileName);
+        try
+        {
+            Scanner inputFile = new Scanner(inputFileName);
+            while (inputFile.hasNext())
+            {
+                String tag1 = inputFile.next();
+                String artistOrGenere = removeLeadingSpaces(inputFile.nextLine());
+                String tag2 = inputFile.next();
+                String title = removeLeadingSpaces(inputFile.nextLine());
+                if (tag1.contains("Artist"))
+                {
+                    media.add(new Music(title, artistOrGenere));
+                } else if (tag1.contains("genere"))
+                {
+                    media.add(new Movie(title, artistOrGenere));
+                } else
+                {
+                    System.out.println("Can only import from txt files formatted from this program");
+                }
+
+            }
+            inputFile.close();
+        } catch (FileNotFoundException ex)
+        {
+            System.out.printf("File %s not found.\n", fileName);
+        }
+    }
+
+    /**
+     * export string to txt file in java folder
+     *
+     * @param stringArray sorted array
+     * @param input scanner used to name file
+     */
     public static void exportStringArray(String[] stringArray, Scanner input)
     {
         String fileName = promptForString(input, "Please enter file name");
+        fileName = fileName + ".txt";
         try
         {
             PrintWriter outputFile = new PrintWriter(fileName);
@@ -142,10 +182,10 @@ public class MediaProject
     public static String[] createMovieArray(ArrayList<Media> media, int movieSize)
     {
         String[] sortedMovie = new String[movieSize];
-        int movieCount=0;
+        int movieCount = 0;
         for (int i = 0; i < media.size(); i++)
         {
-            
+
             if (media.get(i) instanceof Movie)
             {
                 sortedMovie[movieCount] = media.get(i).toString();
@@ -165,7 +205,7 @@ public class MediaProject
     public static String[] createMusicArray(ArrayList<Media> media, int musicSize)
     {
         String[] sortedMusic = new String[musicSize];
-        int musicCount=0;
+        int musicCount = 0;
         for (int i = 0; i < media.size(); i++)
         {
             if (media.get(i) instanceof Music)
@@ -175,41 +215,6 @@ public class MediaProject
             }
         }
         return sortedMusic;
-    }
-
-    /**
-     * @param media media list
-     * @return count for each instance of movie
-     */
-   /*
-    public static int countMovie(ArrayList<Media> media)
-    {
-        int count = 0;
-        for (int i = 0; i < media.size(); i++)
-        {
-            if (media.get(i) instanceof Movie)
-            {
-                count++;
-            }
-        }
-        return count;
-    }*/
-
-    /**
-     * @param media media list
-     * @return count for each instance of music
-     */
-    public static int countMusic(ArrayList<Media> media)
-    {
-        int count = 0;
-        for (int i = 0; i < media.size(); i++)
-        {
-            if (media.get(i) instanceof Music)
-            {
-                count++;
-            }
-        }
-        return count;
     }
 
     /**
@@ -282,6 +287,22 @@ public class MediaProject
             System.out.println("Please try a valid number");
         }
         return integer;
+    }
+
+    /**
+     * removes blank spaces from strings
+     *
+     * @param string
+     * @return string without empty space infront of it
+     */
+    public static String removeLeadingSpaces(String string)
+    {
+        while (string.length() > 0 && string.charAt(0) == ' ')
+        {
+            string = string.substring(1);
+
+        }
+        return string;
     }
 
     /**

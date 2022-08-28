@@ -35,7 +35,7 @@ public class Music extends Media
     {
         // System.out.printf("Title: %s \t Artist: %s\n",title,artist);
        // return "Title:  " + title + "\nArtist: " + artist;
-        return "Artist:  " + artist + "\nTitle: " + title;
+        return "Artist: " + artist + "\nTitle: " + title;
 
     }
 }

@@ -24,7 +24,7 @@ public class Movie extends Media
     }
      @Override
     public String toString(){
-        return  "Genere:  " + genere +"\nTitle: "+title;
+        return  "Genere: " + genere +"\nTitle: "+title;
        // return  "Title:  " + title +"\nGenere: "+genere;
     }
 }
