@@ -31,14 +31,14 @@ public class MediaProject
         menu[3] = "3 - Display All Media On Screen";
         menu[4] = "4 - Display Music, option to export to txt file";
         menu[5] = "5 - Display Movies, option to export to txt file";
-        menu[6] = "6 - import list";
+        menu[6] = "6 - import list previously created list";
         menu[7] = "7 - Quit";
 
         ArrayList<Media> allMedia = new ArrayList<Media>();
         String yesOrNo = "n";
         int menuChoice = promptForMenuSelection(input, menu);
-        int movieSize = 0;
-        int musicSize = 0;
+       // int movieSize = 0;
+       // int musicSize = 0;
         boolean shouldExit = false;
         while (shouldExit == false)
         {
@@ -46,12 +46,12 @@ public class MediaProject
             {
                 case 1:
                     addMusic(input, allMedia, TITLE_PROMPT, ARTIST_PROMPT);
-                    musicSize++;
+                  //  musicSize++;
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 2:
                     addMovie(input, allMedia, TITLE_PROMPT, GENERE_PROMPT);
-                    movieSize++;
+                   // movieSize++;
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 3:
@@ -59,7 +59,7 @@ public class MediaProject
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 4:
-                    //int musicSize = countMusic(allMedia);
+                    int musicSize = countMusic(allMedia);
                     String[] sortedMusic = new String[musicSize];
                     sortedMusic = createMusicArray(allMedia, musicSize);
                     Arrays.sort(sortedMusic);
@@ -73,7 +73,7 @@ public class MediaProject
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 5:
-                    //  int movieSize = countMovie(allMedia);
+                      int movieSize = countMovie(allMedia);
                     String[] sortedMovie = new String[movieSize];
                     sortedMovie = createMovieArray(allMedia, movieSize);
                     Arrays.sort(sortedMovie);
@@ -87,7 +87,8 @@ public class MediaProject
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 6:
-                    importList(input,allMedia);
+                    System.out.println("This function is designed to import lists created from this program");
+                    importList(input, allMedia);
                     menuChoice = promptForMenuSelection(input, menu);
                     break;
                 case 7:
@@ -102,7 +103,11 @@ public class MediaProject
         }
 
     }
-
+/**
+ * imports previously created lists
+ * @param input scanner for inputing file name
+ * @param media array list
+ */
     public static void importList(Scanner input, ArrayList<Media> media)
     {
         String fileName = promptForString(input, "Please enter file name");
@@ -119,9 +124,13 @@ public class MediaProject
                 if (tag1.contains("Artist"))
                 {
                     media.add(new Music(title, artistOrGenere));
+                          //  media.add(new Music(title, artist));
+
                 } else if (tag1.contains("genere"))
                 {
                     media.add(new Movie(title, artistOrGenere));
+                         //   media.add(new Movie(title, genere));
+
                 } else
                 {
                     System.out.println("Can only import from txt files formatted from this program");
@@ -216,7 +225,42 @@ public class MediaProject
         }
         return sortedMusic;
     }
+/**
+     * @param media media list
+     * @return count for each instance of movie
+     */
+   
+    public static int countMovie(ArrayList<Media> media)
+    {
+        int count = 0;
+        for (int i = 0; i < media.size(); i++)
+        {
+            if (media.get(i) instanceof Movie)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 
+    /**
+     * @param media media list
+     * @return count for each instance of music
+     */
+    public static int countMusic(ArrayList<Media> media)
+    {
+        int count = 0;
+        for (int i = 0; i < media.size(); i++)
+        {
+            if (media.get(i) instanceof Music)
+            {
+                System.out.println(media.get(i));
+                count++;
+            }
+        }
+        System.out.println();
+        return count;
+    }
     /**
      * prints all media to screen
      *
